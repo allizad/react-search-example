@@ -17,6 +17,20 @@ class Search extends React.Component {
     this.setState({query: e.target.value});
   }
 
+  // https://www.elastic.co/guide/en/elasticsearch/guide/current/fuzzy-query.html
+  simpleMatchFuzzyQuery() {
+    return {
+      "query": {
+        "fuzzy": {
+          "text": {
+            "value": this.state.query,
+            "fuzziness": "AUTO"
+          }
+        }
+      }
+    }
+  }
+
   basicQuery() {
     return {
       "query" : {
@@ -53,7 +67,7 @@ class Search extends React.Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(this.basicQuery())
+      body: JSON.stringify(this.simpleMatchFuzzyQuery())
     })
     .then(response => response.json())
     .then(json => {
