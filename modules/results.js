@@ -8,6 +8,8 @@ class Results extends React.Component {
       return results.map((result, i) => (
         <ResultComponent key={i} result={result}/>
       ))
+    } else {
+      return (<span>no results, amigo. Try again</span>)
     }
   }
 

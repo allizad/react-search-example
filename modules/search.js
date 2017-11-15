@@ -32,6 +32,7 @@ class Search extends React.Component {
   onClick() {
     console.log(`search for ${this.state.query}`);
     let url = `${ELASTICSEARCH_URL}/_search`;
+    // this is janky because of function scoping...yayyyyy javascript
     // fetch(url, {
     //   method: 'POST',
     //   headers: {
